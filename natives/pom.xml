@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.ghosthack</groupId>
+    <artifactId>libjxl-ffm-parent</artifactId>
+    <version>0.12.0-0.1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>libjxl-ffm-natives</artifactId>
+  <packaging>pom</packaging>
+  <name>libjxl-ffm natives</name>
+  <description>From-source libjxl shared libraries, one classifier jar per platform</description>
+  <licenses>
+    <license>
+      <name>BSD 3-Clause License</name>
+      <url>https://opensource.org/license/bsd-3-clause</url>
+      <distribution>repo</distribution>
+      <comments>Includes libjxl and its bundled dependencies; see THIRD-PARTY.md and BUILD-INFO.txt.</comments>
+    </license>
+  </licenses>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <executions>
+          <execution>
+            <id>natives-jar</id><phase>package</phase><goals><goal>jar</goal></goals>
+            <configuration>
+              <classesDirectory>src/main/resources</classesDirectory>
+              <classifier>${native.classifier}</classifier>
+              <includes><include>natives/${native.classifier}/**</include></includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>all-natives</id>
+      <properties><native.classifier>macos-arm64</native.classifier></properties>
+      <build><plugins><plugin>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version>
+        <executions>
+          <execution><id>natives-jar-windows</id><phase>package</phase><goals><goal>jar</goal></goals><configuration><classesDirectory>src/main/resources</classesDirectory><classifier>windows-x64</classifier><includes><include>natives/windows-x64/**</include></includes></configuration></execution>
+          <execution><id>natives-jar-linux</id><phase>package</phase><goals><goal>jar</goal></goals><configuration><classesDirectory>src/main/resources</classesDirectory><classifier>linux-x64</classifier><includes><include>natives/linux-x64/**</include></includes></configuration></execution>
+        </executions>
+      </plugin></plugins></build>
+    </profile>
+  </profiles>
+</project>
