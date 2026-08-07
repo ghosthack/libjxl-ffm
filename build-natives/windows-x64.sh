@@ -44,7 +44,7 @@ for library in libbrotlicommon.dll libbrotlidec.dll libbrotlienc.dll \
   echo "$base" >> "$DEST/manifest.txt"
 done
 
-ALLOWED='jxl|libbrotli|libwinpthread|libgcc_s_seh|libstdc\+\+|KERNEL32|USER32|ADVAPI32|bcrypt|msvcrt|ntdll|api-ms-'
+ALLOWED='libjxl|libbrotli|libwinpthread|libgcc_s_seh|libstdc\+\+|KERNEL32|USER32|ADVAPI32|bcrypt|msvcrt|ntdll|api-ms-'
 for library in "$DEST"/*.dll; do
   if objdump -p "$library" | awk '/DLL Name:/{print $3}' | grep -viE "^($ALLOWED)"; then
     echo "ERROR: $library imports an unexpected DLL (above)"; exit 1
