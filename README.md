@@ -18,12 +18,12 @@ texts, source revisions, and a `BUILD-INFO.txt` manifest.
 <dependency>
   <groupId>io.github.ghosthack</groupId>
   <artifactId>libjxl-ffm</artifactId>
-  <version>0.12.0-0.1.0-SNAPSHOT</version>
+  <version>0.12.0-0.1.0</version>
 </dependency>
 <dependency>
   <groupId>io.github.ghosthack</groupId>
   <artifactId>libjxl-ffm-natives</artifactId>
-  <version>0.12.0-0.1.0-SNAPSHOT</version>
+  <version>0.12.0-0.1.0</version>
   <classifier>macos-arm64</classifier> <!-- windows-x64 or linux-x64 -->
   <scope>runtime</scope>
 </dependency>
