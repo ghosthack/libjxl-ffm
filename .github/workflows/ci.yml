@@ -31,7 +31,7 @@ jobs:
       - name: Build libjxl and Brotli natives
         run: build-natives/macos-arm64.sh
       - name: Test bindings and bundled natives
-        run: mvn -B clean install
+        run: ./mvnw -B clean install
       - uses: actions/upload-artifact@v4
         with:
           name: natives-macos-arm64
@@ -54,7 +54,7 @@ jobs:
       - name: Build libjxl and Brotli natives
         run: build-natives/linux-x64.sh
       - name: Test bindings and bundled natives
-        run: mvn -B clean install
+        run: ./mvnw -B clean install
       - uses: actions/upload-artifact@v4
         with:
           name: natives-linux-x64
@@ -88,8 +88,8 @@ jobs:
       - name: Build libjxl and Brotli natives
         run: build-natives/windows-x64.sh
       - name: Test bindings and bundled natives
-        shell: pwsh
-        run: mvn -B clean install
+        shell: bash
+        run: ./mvnw -B clean install
       - uses: actions/upload-artifact@v4
         with:
           name: natives-windows-x64
